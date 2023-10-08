@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Círculo Seguindo o Mouse</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #circle {
+      width: 20px;
+      height: 20px;
+      background-color: blue;
+      border-radius: 50%;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div id="circle"></div>
+
+  <script>
+    const circle = document.getElementById("circle");
+    
+    // Função para atualizar a posição do círculo com base na posição do mouse
+    function updateCirclePosition(event) {
+        
+      const mouseX = event.clientX; 
+      const mouseY = event.clientY;
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      
+      // Calcula o ângulo entre o mouse e o centro da janela
+      const angle = Math.atan2(mouseY - centerY, mouseX - centerX);
+      
+      // Define o raio do círculo
+      const radius = 200;
+      
+      // Calcula a nova posição do círculo
+      const newX = centerX + radius * Math.cos(angle);
+      const newY = centerY + radius * Math.sin(angle);
+      
+      // Define a posição do círculo
+      circle.style.left = newX + "px";
+      circle.style.top = newY + "px";
+    }
+    document.addEventListener("mousemove", updateCirclePosition);
+    // Registra o evento de movimento do mouse
+    
+  </script>
+</body>
+</html>
